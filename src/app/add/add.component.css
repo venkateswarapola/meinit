@@ -1,0 +1,22 @@
+div.ex3
+{
+    background-color: lightblue;
+    width: 150px;
+    height: 90px;
+    overflow: auto;
+}
+a{
+    cursor: pointer;
+}
+a:active
+{
+    background-color: aliceblue;
+}
+input#fasak
+{
+    height:650px;
+}
+textarea
+{
+    height:100px;
+}

@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <div class="row">
+   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <a routerLink="">Maintain Bussiness Users</a><br><br>
+    <a>Associate Bussiness Users</a><br><br>
+   </div>            
+
+   <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <a *ngIf="bool" style="float: left;">
+                  <select (change)="onChange($event.target.value)">
+                  <option *ngFor="let pag of pageno">{{pag}}</option>
+          </select>
+        </a>
+<a style="float: right;"><input *ngIf="bool" type="text" name="search" placeholder="USERNAME...." (keyup)="onKey($event)"></a>
+                <br>
+    <form [formGroup]="myForm" (ngSubmit)="checkdelete()">
+    <table *ngIf="bool" class="table table-hover">
+      <thead>
+        <tr>
+          <th>CheckBox</th>
+          <th>BUSERNAME</th>
+          <th>BUSERID</th>
+          <th>BUSERROLE</th>
+          <th>BUSERTITLE</th>
+          <th>BUSERSTATUS</th>
+          <th>BVIEW</th>
+        </tr>
+    </thead>
+         <tr *ngFor="let dat2 of data">
+              <td><input type="checkbox"
+                  (change)="onChange123(dat2.b_user_id, $event.target.checked)"></td>
+          <td>{{dat2.b_user_name}}</td>
+          <td>{{dat2.b_user_id}}</td>
+          <td>{{dat2.b_user_role}}</td>
+          <td>{{dat2.b_user_title}}</td>
+          <td>VerifiedInsert</td>
+          <td><a href=""(click)="view(dat2.b_user_id)" data-toggle="modal" data-target="#myModal">view</a></td>
+          <td>
+          </td>
+        </tr> 
+    </table>
+    <h1 *ngIf="!bool">No user!!</h1>
+    <p *ngIf="!med">{{exist}}</p>
+    <ul *ngIf="bool" class="nav nav-pills">
+        <li><button type="button" (click)="setpageleft($event)" class="btn btn-default btn-md"><span class="glyphicon glyphicon-chevron-left"></span></button></li>
+     <li class="nav-item" *ngFor="let p of pages">
+         <a class="nav-link active" href=""
+          (click)="setpage(p,$event)">{{p}}
+         </a></li>
+    <li><button  type="button" (click)="setpageright($event)" class="btn btn-default btn-md"><span class="glyphicon glyphicon-chevron-right"></span></button></li>
+   </ul>
+   <br>
+   <div  style="text-align: center">
+   <div class="btn-group">
+    <button  type="button" class="btn btn-primary" (click)="addb()">add</button>
+    <button   class="btn btn-primary" type="submit">delete</button>
+    </div>
+    </div>
+    </form>
+    <br>
+</div>
+   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+  
+</div>
+</div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">UserDetails</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+                <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>BUSERNAME</th>
+                            <th>BUSERID</th>
+                            <th>BUSERROLE</th>
+                            <th>BUSERTITLE</th>
+                            <th>BUSERSTATUS</th>
+                          </tr>
+                      </thead>
+                           <tr *ngFor="let dat2 of data1">
+                            <td>{{dat2.b_user_name}}</td>
+                            <td>{{dat2.b_user_id}}</td>
+                            <td>{{dat2.b_user_role}}</td>
+                            <td>{{dat2.b_user_title}}</td>
+                            <td>VerifiedInsert</td>
+                          </tr> 
+                      </table>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
